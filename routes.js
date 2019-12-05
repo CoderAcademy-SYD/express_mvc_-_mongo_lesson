@@ -3,6 +3,7 @@ const express = require('express') // This is the framework we are using to buil
 const router = express.Router() // This is the above mentioned router
 
 // This is an empty array that will be our pseudo database until we hook up mongo
+// It needed to move so the the routes will be in the same scope
 const contacts = []
 
 // Below are the routes

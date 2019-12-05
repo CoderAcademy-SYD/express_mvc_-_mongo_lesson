@@ -17,9 +17,6 @@ app.set('view engine', 'handlebars') // Setting the view engine to be handlebars
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-// This is an empty array that will be our pseudo database until we hook up mongo
-const contacts = []
-
 app.use(require('./routes'))
 
 // This is the code that will turn the web server on
