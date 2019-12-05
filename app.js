@@ -1,6 +1,6 @@
 const express = require('express') // This is the framework we are using to build the server
 const exphbs = require('express-handlebars') // This is the templating engine we will use for the views
-const app = express() // This creates the express app. Notice that it is a function
+const app = express() // This creates the express app. Notice that it is a function. Dont pass this around the app!
 const port = 3000 // A variable to hold our port number. This will be used to start the server
 
 // NB expess is unopiniated but handlebars is not. It needs a few files set out for it.
@@ -20,25 +20,7 @@ app.use(express.json())
 // This is an empty array that will be our pseudo database until we hook up mongo
 const contacts = []
 
-// Below are the routes
-// The pattern is as follows
-// app.<verb>('route', (req, res)=> {})
-
-app.get('/contacts', (req, res) => {
-  res.render('contacts/index', { contacts }) // Sending the data contacts to 'contacts/index' similar to the '@'in ruby
-})
-
-// Where we send all of our data
-app.post('/contacts', (req, res) => {
-  let { name, email } = req.body // Destructure name and email off req.body
-  let contact = { name, email } // make contact a variale which holds an object of the name and email
-  contacts.push(contact) // Push the contact to the array
-  res.redirect('/contacts') // Redirect the user to '/contacts' to see the list of cantacts
-})
-
-app.get('/contacts/new', (req, res) => {
-  res.render('contacts/form') // the response is to render the contact form
-})
+app.use(require('./routes'))
 
 // This is the code that will turn the web server on
 app.listen(port, () => console.log(`Server listening on port ${port}!`))
