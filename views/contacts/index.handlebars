@@ -1,0 +1,13 @@
+<h1>Contacts</h1>
+
+
+{{!-- the contacts were made avalible to us in the route in app.js --}}
+{{!-- loop over it and print out the name and the email --}}
+{{!-- {{{}}}  are used for partials --}}
+{{!-- {{# }} & {{/ }} means dont print it --}}
+
+<ul>
+    {{#each contacts}}
+    <li>{{this.name}} - {{this.email}}</li>
+    {{/each}}
+</ul>

@@ -25,7 +25,7 @@ const contacts = []
 // app.<verb>('route', (req, res)=> {})
 
 app.get('/contacts', (req, res) => {
-  res.json(contacts)
+  res.render('contacts/index', { contacts }) // Sending the data contacts to 'contacts/index' similar to the '@'in ruby
 })
 
 // Where we send all of our data
