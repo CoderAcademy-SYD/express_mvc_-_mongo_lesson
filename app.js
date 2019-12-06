@@ -1,8 +1,19 @@
 const express = require('express') // This is the framework we are using to build the server
 const exphbs = require('express-handlebars') // This is the templating engine we will use for the views
-const routes = require('./routes') // importing the routes from routes.js
+const routes = require('./routes') // Importing the routes from routes.js
+const mongoose = require('mongoose') // This is the ODM (Object data modelling) package
 const app = express() // This creates the express app. Notice that it is a function. Dont pass this around the app!
 const port = 3000 // A variable to hold our port number. This will be used to start the server
+
+// This is connecting the db. It will create a new db if one doesnt exist already
+// The options object as the second argument is to address deprication warnings
+mongoose.connect('mongodb://localhost/contact_app', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+
+mongoose.Promise = global.Promise // Telling mongoose to use the Node Promise library.
+mongoose.connection.on('error', error => console.log(error)) // Log out the error if there is one
 
 // NB expess is unopiniated but handlebars is not. It needs a few files set out for it.
 // It needs a layouts views folder, layouts folder and a main.handlebars inside that
