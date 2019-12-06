@@ -1,5 +1,6 @@
 const express = require('express') // This is the framework we are using to build the server
 const exphbs = require('express-handlebars') // This is the templating engine we will use for the views
+const routes = require('./routes') // importing the routes from routes.js
 const app = express() // This creates the express app. Notice that it is a function. Dont pass this around the app!
 const port = 3000 // A variable to hold our port number. This will be used to start the server
 
@@ -17,7 +18,7 @@ app.set('view engine', 'handlebars') // Setting the view engine to be handlebars
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-app.use(require('./routes'))
+app.use(routes)
 
 // This is the code that will turn the web server on
 app.listen(port, () => console.log(`Server listening on port ${port}!`))
