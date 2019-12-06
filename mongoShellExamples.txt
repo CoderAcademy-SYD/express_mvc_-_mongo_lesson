@@ -1,0 +1,28 @@
+NB 'mongod' must be running when you enter 'mongo' to enter in the mongo shell
+
+It is one *BIG* object. You can put any key value pair on an object
+
+1) show dbs => This will show all the databases which you have created. For now it will be 
+2) use coderacademy => This will select the DB 'coderacademy'. If it doesnt exisit. It will create it.
+3) db.students.insert({ name: "Mr Pickles" }) => Inserted a name of 'Mr Pickels' into the students collection within the coderacademy db
+4) db.students.insert({ name: "Jerry Rice", age: 50 }); => Inserted another student with 2 keys
+5) db.students.find() => Brings up all students. (all because we didnt pass in an argument)
+6) db.students.insert({ name: "Mary Lamb", sheep: ["Ed Sheeran", "Hops"] }); => Adding an array to. Because Mary has many sheep.
+
+
+There are no relationships in noSQL, therefore it is okay to duplicate information
+
+Have a look at the docs https://docs.mongodb.com/
+
+Challenge: Find a way to update our first record - change the name to 'Yeezy' and add an array of songs.
+
+Answer
+db.students.update(
+  { _id: ObjectId("5bfdc6fe224fa2cf8ef9642e") },
+  { $set: { name: "yeezy" } }
+);
+
+Challenge: Remove a record
+
+Answer
+db.students.remove({ _id: ObjectId("5bfddca1224fa2cf8ef96431") });
